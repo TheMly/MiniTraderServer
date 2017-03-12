@@ -1,6 +1,9 @@
 Group 116 - METI-PLA1
-Manuel Lamy, nº 54319, mmvpm-iscteiulpt
-Wilson Guimarães, nº 76139, wegno-iscteiulpt
+
+Members:
+-Manuel Lamy, nº 54319, mmvpm-iscteiulpt
+-Wilson Guimarães, nº 76139, wegno-iscteiulpt
+
 Components:
 -MiniTrader-US: 
 	Implementation: Not started yet
@@ -11,3 +14,4 @@ Components:
 -MiniTrader-EU:
 	Implementation: Not started yet
 	Test coverage: NA
+
