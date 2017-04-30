@@ -23,9 +23,6 @@ import mt.filter.AnalyticsFilter;
 /**
  * MicroTraderServer implementation. This class should be responsible to do the
  * business logic of stock transactions between buyers and sellers.
- * 
- * @author Group 78
- *
  */
 public class MicroServer implements MicroTraderServer {
 
@@ -363,9 +360,6 @@ public class MicroServer implements MicroTraderServer {
 	 */
 	private void notifyAllClients(Order order) throws ServerException {
 		LOGGER.log(Level.INFO, "Notifying clients about the new order...");
-		if (order == null) {
-			throw new ServerException("There was no order in the message");
-		}
 		for (Entry<String, Set<Order>> entry : orderMap.entrySet()) {
 			serverComm.sendOrder(entry.getKey(), order);
 		}
