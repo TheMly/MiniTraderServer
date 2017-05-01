@@ -69,5 +69,4 @@ public class XMLFileManager {
 			e.printStackTrace();
 		}
 	}
-
 }
