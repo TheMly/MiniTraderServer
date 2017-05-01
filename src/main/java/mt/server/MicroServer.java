@@ -19,6 +19,7 @@ import mt.comm.ServerSideMessage;
 import mt.comm.impl.ServerCommImpl;
 import mt.exception.ServerException;
 import mt.filter.AnalyticsFilter;
+import mt.server.util.XMLFileManager;
 
 /**
  * MicroTraderServer implementation. This class should be responsible
@@ -254,7 +255,9 @@ public class MicroServer implements MicroTraderServer {
 		
 		//save order on map
 		Set<Order> orders = orderMap.get(o.getNickname());
-		orders.add(o);		
+		orders.add(o);	
+		
+		XMLFileManager.write(o);
 	}
 
 	/**
