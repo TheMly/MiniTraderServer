@@ -104,8 +104,8 @@ public class MicroServer implements MicroTraderServer {
 						if (msg.getOrder().getServerOrderID() == EMPTY) {
 							msg.getOrder().setServerOrderID(id++);
 						}
+						processNewOrder(msg.getOrder());
 						notifyAllClients(msg.getOrder());
-						processNewOrder(msg);
 					}
 				} catch (ServerException e) {
 					serverComm.sendError(msg.getSenderNickname(), e.getMessage());
@@ -218,29 +218,26 @@ public class MicroServer implements MicroTraderServer {
 	 * @param msg
 	 *            the message sent by the client
 	 */
-	private void processNewOrder(ServerSideMessage msg) throws ServerException {
+	private void processNewOrder(Order o) throws ServerException {
 		LOGGER.log(Level.INFO, "Processing new order...");
 
-		Order o = msg.getOrder();
-
 		if (o.getNumberOfUnits() < 10) {
-			LOGGER.log(Level.INFO, "This order can't be submitted by the client " + msg.getSenderNickname()
+			LOGGER.log(Level.WARNING, "This order can't be submitted by the client " + o.getNickname()
 					+ " because a single order quantity can never be lower than 10 units.");
-			throw new ServerException("This order can't be submitted because the client " + msg.getSenderNickname()
-					+ " submited an order with less than 10 units.");
-
+			
+			throw new ServerException("A single order quantity can never be lower than 10 units");
 		} else {
 			// save the order on map
 			saveOrder(o);
 
 			// if is buy order
 			if (o.isBuyOrder()) {
-				processBuy(msg.getOrder());
+				processBuy(o);
 			}
 
 			// if is sell order
 			if (o.isSellOrder()) {
-				processSell(msg.getOrder());
+				processSell(o);
 			}
 
 			// notify clients of changed order
@@ -251,7 +248,6 @@ public class MicroServer implements MicroTraderServer {
 
 			// reset the set of changed orders
 			updatedOrders = new HashSet<>();
-
 		}
 	}
 
