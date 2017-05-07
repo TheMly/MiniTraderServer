@@ -262,8 +262,7 @@ public class MicroServerTest {
 		ms.start(serverComm);
 
 		verify(serverComm, atLeastOnce()).sendError(msg11.getSenderNickname(),
-				"This order can't be submitted because the client " + msg11.getSenderNickname()
-						+ " submited an order with less than 10 units.");
+				"A single order quantity can never be lower than 10 units.");
 		assertTrue(ms.getOrderMap().get("userA").isEmpty());
 	}
 }

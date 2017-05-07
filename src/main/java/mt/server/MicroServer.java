@@ -228,7 +228,7 @@ public class MicroServer implements MicroTraderServer {
 			LOGGER.log(Level.WARNING, "This order can't be submitted by the client " + o.getNickname()
 					+ " because a single order quantity can never be lower than 10 units.");
 
-			throw new ServerException("A single order quantity can never be lower than 10 units");
+			throw new ServerException("A single order quantity can never be lower than 10 units.");
 		} else {
 			// save the order on map
 

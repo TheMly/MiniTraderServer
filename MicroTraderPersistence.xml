@@ -1,6 +1,0 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<XML>
-	<Order Id="2" Price="10.0" Stock="t1" Type="Buy" Units="10">
-		<Customer>teste</Customer>
-	</Order>
-</XML>
