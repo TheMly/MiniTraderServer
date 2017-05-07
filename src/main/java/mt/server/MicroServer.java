@@ -267,7 +267,7 @@ public class MicroServer implements MicroTraderServer {
 		Set<Order> orders = orderMap.get(o.getNickname());
 		orders.add(o);
 
-		XMLFileManager.write(o, true, true);
+		XMLFileManager.write(o, false, false);
 	}
 
 	/**
