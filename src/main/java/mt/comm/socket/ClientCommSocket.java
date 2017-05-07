@@ -253,7 +253,7 @@ class ClientCommThread extends Thread {
 					clientMessages.put(message);
 					if(Type.ERROR.equals(message.getType())){
 						System.out.println(String.format("ClientComm >> Client '%s' was not allowed to connect", nickname, message));
-						isConnected = false;
+						//isConnected = false;
 					}
 				} catch (EOFException | SocketException e) {
 					System.out.println(String.format("ClientComm >> The socket for client '%s' has been closed by sever", nickname));
