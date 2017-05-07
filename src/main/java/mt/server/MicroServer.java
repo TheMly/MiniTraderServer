@@ -101,11 +101,15 @@ public class MicroServer implements MicroTraderServer {
 			case NEW_ORDER:
 				try {
 					verifyUserConnected(msg);
-					if (msg.getOrder().getServerOrderID() == EMPTY) {
-						msg.getOrder().setServerOrderID(id++);
+					if (msg.getOrder() == null) {
+						serverComm.sendError(msg.getSenderNickname(), "There is no order in the message.");
+					} else {
+						if (msg.getOrder().getServerOrderID() == EMPTY) {
+							msg.getOrder().setServerOrderID(id++);
+						}
+						processNewOrder(msg.getOrder());
+						notifyAllClients(msg.getOrder());
 					}
-					processNewOrder(msg.getOrder());
-					notifyAllClients(msg.getOrder());
 				} catch (ServerException e) {
 					serverComm.sendError(msg.getSenderNickname(), e.getMessage());
 				}
@@ -227,8 +231,8 @@ public class MicroServer implements MicroTraderServer {
 			throw new ServerException("A single order quantity can never be lower than 10 units");
 		} else {
 			// save the order on map
-			saveOrder(o);
 
+			saveOrder(o);
 			// if is buy order
 			if (o.isBuyOrder()) {
 				processBuy(o);
@@ -248,7 +252,6 @@ public class MicroServer implements MicroTraderServer {
 			// reset the set of changed orders
 			updatedOrders = new HashSet<>();
 		}
-
 	}
 
 	/**
@@ -263,8 +266,8 @@ public class MicroServer implements MicroTraderServer {
 		// save order on map
 		Set<Order> orders = orderMap.get(o.getNickname());
 		orders.add(o);
-		
-		XMLFileManager.write(o, false, false);
+
+		XMLFileManager.write(o, true, true);
 	}
 
 	/**
@@ -362,6 +365,7 @@ public class MicroServer implements MicroTraderServer {
 		if (order == null) {
 			throw new ServerException("There was no order in the message");
 		}
+		
 		for (Entry<String, Set<Order>> entry : orderMap.entrySet()) {
 			serverComm.sendOrder(entry.getKey(), order);
 		}
@@ -385,4 +389,33 @@ public class MicroServer implements MicroTraderServer {
 		}
 	}
 
+	/**
+	 * @return the orderMap
+	 */
+	public Map<String, Set<Order>> getOrderMap() {
+		return orderMap;
+	}
+
+	/**
+	 * @param orderMap
+	 *            the orderMap to set
+	 */
+	public void setOrderMap(Map<String, Set<Order>> orderMap) {
+		this.orderMap = orderMap;
+	}
+
+	/**
+	 * @return the updatedOrders
+	 */
+	public Set<Order> getUpdatedOrders() {
+		return updatedOrders;
+	}
+
+	/**
+	 * @param updatedOrders
+	 *            the updatedOrders to set
+	 */
+	public void setUpdatedOrders(Set<Order> updatedOrders) {
+		this.updatedOrders = updatedOrders;
+	}
 }
