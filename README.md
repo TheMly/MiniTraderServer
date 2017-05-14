@@ -1,19 +1,25 @@
-Group 116 - METI-PLA1
+METI-PLA1 - Group 116 
 
-* Members:
-	* Manuel Lamy, nº 54319, mmvpm-iscteiulpt
-	* Wilson Guimarães, nº 76139, wegno-iscteiulpt
+* Video - Final Delivery - 3 branches
+	* URL: ??? Wilson ???
+	
+* VÃ­deo: Midterm Delivery
+	* URL: https://www.youtube.com/watch?v=NmEthIw1tZQ&
+	
+* This software is fully operational, accordingly with the requirements requested by the client.
 
 * Components:
 	* MiniTrader-US: 
-		* Implementation: Not started yet
-		* Test coverage: NA
+		* Implementation: Completed
+		* Server test coverage: 93,7%
 	* MiniTrader-AS: 
-		* Implementation: Not started yet
-		* Test coverage: NA
+		* Implementation: Completed
+		* Server test coverage: 93,3%
 	* MiniTrader-EU:
-		* Implementation: Not started yet
-		* Test coverage: NA
+		* Implementation: Completed
+		* Server test coverage: 94%
 
-* Vídeo: Midterm Delivery
-	* URL: https://www.youtube.com/watch?v=NmEthIw1tZQ&
+* Members:
+	* Manuel Lamy, nÂº 54319, mmvpm-iscteiulpt, mmvpm@iscte-iul.pt
+	* Wilson GuimarÃ£es, nÂº 76139, wegno-iscteiulpt, wegno@iscte-iul.pt
+
